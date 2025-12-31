@@ -14,3 +14,8 @@
   grid-row: var(--r);
   grid-column: var(--c);
 }
+@layer utilities {
+  .special-font o {
+    font-family: "Onepiece", sans-serif;
+  }
+}
