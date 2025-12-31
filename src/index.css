@@ -1,1 +1,19 @@
 @import "tailwindcss";
+
+.elem {
+  grid-row: var(--r);
+  grid-column: var(--c);
+}
+@font-face {
+  font-family: "Onepiece";
+  src: url("/fonts/one-piece-font.ttf") format("truetype");
+}
+
+@theme {
+  --font-Onepiece: "Onepiece";
+}
+/* This is the bridge between your variables and the CSS Grid */
+.elem {
+  grid-row: var(--r);
+  grid-column: var(--c);
+}
