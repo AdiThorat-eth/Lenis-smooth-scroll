@@ -1,8 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import Lenis from "lenis";
-
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 const App = () => {
   const rafRef = useRef(null);
+  gsap.registerPlugin(ScrollTrigger);
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -33,9 +36,49 @@ const App = () => {
     };
   }, []);
 
+  useGSAP(() => {
+    document.querySelectorAll(".elem").forEach((elem) => {
+      let img = elem.querySelector("img");
+      let tl = gsap.timeline();
+
+      let xTransform = gsap.utils.random(-100, 100);
+      tl.set(
+        img,
+        {
+          transformOrigin: `${xTransform < 0 ? 0 : "100%"}`,
+        },
+        "start"
+      )
+        .to(
+          img,
+          {
+            scale: 0,
+            ease: "none",
+            scrollTrigger: {
+              trigger: img,
+              start: "top top",
+              end: "bottom top",
+              scrub: true,
+            },
+          },
+          "start"
+        )
+        .to(elem, {
+          xPercent: xTransform,
+          ease: "none",
+          scrollTrigger: {
+            trigger: img,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+    });
+  });
+
   return (
-    <div className="w-full bg-red-200">
-      <div className="w-full grid grid-cols-8 grid-rows-20 gap-4 p-4 overflow-x-hidden">
+    <div className="w-full bg-zinc-900">
+      <div className="w-full grid grid-cols-8 grid-rows-10 gap-2 p-4 overflow-x-hidden">
         <div className="elem aspect-square" style={{ "--r": "1", "--c": "3" }}>
           <img
             src="./img/img1.png"
@@ -57,7 +100,7 @@ const App = () => {
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="elem aspect-square" style={{ "--r": "3", "--c": "4" }}>
+        <div className="elem aspect-square" style={{ "--r": "2", "--c": "4" }}>
           <img
             src="./img/img4.jpg"
             alt=""
@@ -71,7 +114,7 @@ const App = () => {
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="elem aspect-square" style={{ "--r": "4", "--c": "2" }}>
+        <div className="elem aspect-square" style={{ "--r": "3", "--c": "2" }}>
           <img
             src="./img/img6.jpg"
             alt=""
@@ -85,7 +128,7 @@ const App = () => {
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="elem aspect-square" style={{ "--r": "5", "--c": "7" }}>
+        <div className="elem aspect-square" style={{ "--r": "4", "--c": "7" }}>
           <img
             src="./img/img8.jpg"
             alt=""
@@ -99,7 +142,7 @@ const App = () => {
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="elem aspect-square" style={{ "--r": "6", "--c": "5" }}>
+        <div className="elem aspect-square" style={{ "--r": "5", "--c": "5" }}>
           <img
             src="./img/img10.jpg"
             alt=""
@@ -113,7 +156,7 @@ const App = () => {
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="elem aspect-square" style={{ "--r": "7", "--c": "1" }}>
+        <div className="elem aspect-square" style={{ "--r": "6", "--c": "1" }}>
           <img
             src="./img/img12.png"
             alt=""
@@ -127,7 +170,7 @@ const App = () => {
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="elem aspect-square" style={{ "--r": "8", "--c": "2" }}>
+        <div className="elem aspect-square" style={{ "--r": "7", "--c": "2" }}>
           <img
             src="./img/img14.jpg"
             alt=""
@@ -141,7 +184,7 @@ const App = () => {
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="elem aspect-square" style={{ "--r": "9", "--c": "8" }}>
+        <div className="elem aspect-square" style={{ "--r": "8", "--c": "8" }}>
           <img
             src="./img/img16.jpg"
             alt=""
@@ -155,7 +198,7 @@ const App = () => {
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="elem aspect-square" style={{ "--r": "10", "--c": "8" }}>
+        <div className="elem aspect-square" style={{ "--r": "9", "--c": "8" }}>
           <img
             src="./img/img18.png"
             alt=""
@@ -169,14 +212,22 @@ const App = () => {
             className="w-full h-full object-cover"
           />
         </div>
+        <div className="elem aspect-square" style={{ "--r": "10", "--c": "4" }}>
+          <img
+            src="./img/img20.jpg"
+            alt=""
+            className="w-full h-full object-cover"
+          />
+        </div>
       </div>
       <div className="fixed inset-0 flex flex-col items-center justify-center p-4">
-        <h1 className="text-5xl uppercase text-center font-Onepiece">
+        <h1 className="text-9xl uppercase text-center font-Onepiece text-white">
           One piece
         </h1>
+        <h2 className="text-5xl font-bold text-white">ワンピース</h2>
       </div>
-      <div className="w-full h-screen mx-auto py-96 text-center text-black bg-[#D1D1D1] flex items-center justify-center relative z-[999] ">
-        <p className="text-3xl w-3/4 font-regular leading-[2.5rem] text-left">
+      <div className="w-full h-screen mx-auto py-96 text-center text-black bg-amber-200 flex items-center justify-center relative z-[999] ">
+        <p className="text-3xl w-3/4 font-regular leading-[2.5rem] text-left font-bold mt-10">
           One Piece is a high-fantasy adventure follows Monkey D. Luffy and his
           crew, the Straw Hat Pirates, as they navigate the Grand Line in search
           of the legendary treasure left by the Pirate King, Gol D. Roger. The
