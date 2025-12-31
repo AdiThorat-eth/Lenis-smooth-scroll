@@ -1,16 +1,29 @@
-# React + Vite
+# 🌊 lenis-smooth-scroll
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> **Lenis — Making scrolling smooth.** ✨
 
-Currently, two official plugins are available:
+This repository serves as a professional log for my journey in mastering **Lenis**. It documents my progress in implementing high-performance smooth scrolling and understanding the technical nuances of modern web motion. 🚀
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🗺️ Learning Roadmap
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+I am documenting my growth through the following technical milestones:
 
-## Expanding the ESLint configuration
+- **🛠️ Core Initialization:** Mastering the setup of the Lenis instance and the essential animation loop.
+- **⚙️ Configuration Variables:** Fine-tuning parameters such as duration, easing functions, and scroll orientation.
+- **🛰️ Event Monitoring:** Leveraging scroll event listeners to track user progress and trigger interactions.
+- **🖇️ Animation Syncing:** Integrating Lenis with external libraries like GSAP and ScrollTrigger for unified motion.
+- **⚡ Resource Management:** Implementing best practices for performance optimization and memory cleanup.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 📝 Key Learning Notes
+
+- 🧠 **Logical Flow:** Understanding how the virtual scroll interacts with the native browser physics.
+- ⚠️ **Efficiency:** Focusing on maintaining a steady 60fps+ by optimizing the RequestAnimationFrame loop.
+- 🎨 **User Experience:** Balancing smoothness with responsiveness to ensure the interface remains accessible.
+
+---
+
+_Updating my journey as I build better web experiences._ ✌️

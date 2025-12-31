@@ -1,33 +1,50 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Lenis from "lenis";
-import { useEffect } from "react";
+
 const App = () => {
+  const rafRef = useRef(null);
+
   useEffect(() => {
-    // Initialize Lenis
     const lenis = new Lenis({
-      autoRaf: true,
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: "vertical",
+      gestureOrientation: "vertical",
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+      infinite: false,
     });
 
-    // Listen for the scroll event and log the event data
-    lenis.on("scroll", (e) => {
-      console.log(e);
-    });
-    // Initialize Lenis
-
-    // Use requestAnimationFrame to continuously update the scroll
     function raf(time) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafRef.current = requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
-  });
+    rafRef.current = requestAnimationFrame(raf);
+
+    return () => {
+      // Clean up the loop first, then destroy the instance
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
+      lenis.destroy();
+    };
+  }, []);
+
   return (
-    <div className="w-full h-[300vh]">
-      <div className="w-full h-100vh bg-red"></div>
-      <div className="w-full h-100vh bg-blue"></div>
-      <div className="w-full h-100vh bg-green"></div>
-    </div>
+    <main className="w-full">
+      <section className="w-full h-screen bg-red-500 text-white flex items-center justify-center text-6xl">
+        <h3>Luffy</h3>
+      </section>
+      <section className="w-full h-screen bg-blue-500 text-white flex items-center justify-center text-6xl">
+        <h3>Zoro</h3>
+      </section>
+      <section className="w-full h-screen bg-green-500 text-white flex items-center justify-center text-6xl">
+        <h3>Sanji</h3>
+      </section>
+    </main>
   );
 };
 
