@@ -20,19 +20,21 @@ const App = () => {
       infinite: false,
     });
 
-    function raf(time) {
-      lenis.raf(time);
-      rafRef.current = requestAnimationFrame(raf);
-    }
+    // Connect Lenis with ScrollTrigger
+    lenis.on("scroll", ScrollTrigger.update);
 
-    rafRef.current = requestAnimationFrame(raf);
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
 
     return () => {
-      // Clean up the loop first, then destroy the instance
-      if (rafRef.current) {
-        cancelAnimationFrame(rafRef.current);
-      }
+      // Clean up
       lenis.destroy();
+      gsap.ticker.remove((time) => {
+        lenis.raf(time * 1000);
+      });
     };
   }, []);
 
