@@ -19,3 +19,24 @@
     font-family: "Onepiece", sans-serif;
   }
 }
+
+/* For smoother scrolling experience using lenis*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  overscroll-behavior: none;
+}
+/* Hardware acceleration for smoother animations */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

@@ -18,23 +18,22 @@ const App = () => {
       smoothTouch: false,
       touchMultiplier: 2,
       infinite: false,
+      syncTouch: true, // Add this for better touch sync
+      touchInertiaMultiplier: 35, // Add this for better touch physics
     });
 
     // Connect Lenis with ScrollTrigger
     lenis.on("scroll", ScrollTrigger.update);
 
-    gsap.ticker.add((time) => {
+    const ticker = (time) => {
       lenis.raf(time * 1000);
-    });
+    };
 
-    gsap.ticker.lagSmoothing(0);
+    gsap.ticker.add(ticker);
 
     return () => {
-      // Clean up
       lenis.destroy();
-      gsap.ticker.remove((time) => {
-        lenis.raf(time * 1000);
-      });
+      gsap.ticker.remove(ticker);
     };
   }, []);
 
